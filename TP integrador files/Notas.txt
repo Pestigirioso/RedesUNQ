@@ -1,0 +1,18 @@
+Notas: Para no meter switches de más, solo uso uno por piso, pero hay que tener en cuenta que en los pisos 1 y 10 voy a necesitar 4 switches.
+
+Para interconectar los tres router, habrá que tener una minired por cada conexión entre routers.
+
+para activar los telefonos IP: 
+
+# Interface <una interfaz>
+# Switcport voice Vlan <vlan id>
+
+
+Router(config)#ip nat inside source static 192.168.145.71 200.23.11.4
+Router(config)#interface GigabitEthernet 2/0
+Router(config-if)#ip nat inside
+Router(config-if)#exit
+Router(config)#ip nat inside source static 192.168.145.72 200.23.11.5
+Router(config)#interface GigabitEthernet 2/0
+Router(config-if)#ip nat inside
+Router(config-if)#exit

@@ -1,0 +1,18 @@
+en el ejercicio html había que corregir la página
+
+Flujos desencadenados por el cliente que visita pagina de pronostico y manda un mail:
+
+    Al DNS para conocer la dirección de la página web
+    A la página http
+    Al DNS para conocer la dirección del servidor de mail
+    Al servidor SMTP para enviar el mail
+
+punto netstat -nt
+
+    pregunta la ejecución 
+
+    127.0.0.1 es el localhost (todas las máquinas lo tienen)
+    la direccion local era 172.16.4.5
+    No era ese el ip desde donde se ejecutó el comando, ya que estaba en la columna foreign.
+
+    TODOS LOS DE LA COLUMNA "LOCAL ADDRESS" SON EL EQUIPO LOCAL

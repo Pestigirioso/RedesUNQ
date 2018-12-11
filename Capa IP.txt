@@ -1,0 +1,49 @@
+Entre IP y máscara de subred me definen si dos máquinas están en la misma red
+
+Protocolo ARP relaciona MAC address con IP, porque IP solo no puede definir esas cosas solo.. Necesita de protocolos auxiliares
+
+Cuando la última parte de un número IP de un host es 00, entonces, ese es el número de red.
+Cuando termina en 255.255, es el número de broadcast
+
+Cuando uno tiene una máquina con una placa de red, le asigno una IP (le digo que pertenece a una red particular), en la tabla de ruteo, le digo a la máquina que para salir de esa red, debe respetar un protocolo particular.
+
+El gateway es una ruta llamada "Por defecto", y se encarga de enviar los paquetes que no vayan a un nodo de la red local
+
+La máscara de red define si una máquina está o no en la misma red.
+Lo hace aplicando un AND, entre la máscara asignada, y la IP alguna máquina. Ej:
+
+255 = 1111 1111
+
+    10  . 12  | 38 . 5 (al final hay un /16)
+AND           |
+    255 . 255 | 0  . 0
+    -------------------
+RED: 10 . 12  | 0  . 0
+
+
+     10 .  12 .  38 | 5 (al final hay un /24)
+AND                 |
+    255 . 255 . 255 | 0
+    -------------------
+RED: 10 .  12 .  38 | 0
+
+Son diferentes redes!
+
+Nro IP:     red    .   host
+Máscara:  11111111 . 00000000
+
+
+Cuando hay dos routers conectados entre sí, no se debe guardar en las tablas de ruteo dos rutas estáticas por defecto cruzadas (es decir, va de uno al otro por 0.0.0.0/0).
+Lo correcto sería guardar ruteos estáticos, pero no por defecto, así trata de pegarle sí o sí a ese router. O, colocar un estático por defecto en uno, y estático en el otro.
+
+N° redes por subneteo = 2^n
+n = (bits mascara - n° mascara por defecto)
+
+N° de hosts = 2^m - 2
+m = bits host
+
+Cuando tengo una pc nueva, y apenas la saco de la caja, la placa de red está desconectada, cuando apenas la enchufo a una red (de una empresa, por ejemplo), el DHCP me asigna una IP y una máscara; apenas sucede esto, se me crea una ruta conectada, de forma automática.
+
+VLAN
+
+Si creamos varias VLAN, y las queremos hacer funcionar en cascada en diferentes Switches, entonces debemos crear las VLAN en todos los Switches, sobre todo si pasa de un Switch1 a un Switch3, pero se conectan por medio de un Switch2, ese Switch2 debe tener la VLAN creada, aunque sea solo para la boca trunk
